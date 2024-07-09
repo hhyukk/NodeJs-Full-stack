@@ -17,5 +17,9 @@
   "homepage": "https://github.com/hhyukk/NodeJs-Full-stack#readme",
   "dependencies": {
     "express": "^4.19.2"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.24.7",
+    "@babel/preset-env": "^7.24.7"
   }
 }

@@ -28,3 +28,29 @@ package-lock.json은 node_modules 구조나 package.json이 수정되고 생성�
 - 코드의 양을 줄여주고 유지 보수가 쉽게 해준다.
 - 확장성을 지향한다. 불필요한 간섭이 없고 사용자가 필요한 라이브러리를 추가해서 확장 가능하다.
 - http request와 response를 컨트롤할 수 있다.
+
+# Babel
+
+Babel이란 최신 ES6, ES7 버전의 JavaScript 코드를, ES5버전의 코드로 바꾸어주는 Node.js 패키지
+
+## Babel 설치
+
+npm install --save-dev @babel/core
+
+npm install @babel/preset-env --save-dev
+
+babel.config.json파일 생성
+
+```
+{
+"presets": ["@babel/preset-env"]
+}
+```
+
+https://babeljs.io/setup#installation
+
+@babel/preset-env
+
+@babel/preset-env는 환경에 필요한 구문 변환을 세부적으로 관리할 필요 없이 최신 JavaScript를 사용할 수 있게 해주는 스마트한 preset
+
+https://babeljs.io/docs/en/babel-preset-env
