@@ -62,3 +62,22 @@ Nodemon은 프로젝트 폴더의 파일들을 모니터링 하고 있다가 파
 npm install @babel/core @babel/node --save-dev
 
 script를 `nodemon --exec babel-node index.js` 로 수정
+
+# GET Request
+
+서버를 만들면 서버가 사용자 요청에 응답하도록 해야 한다.
+
+사용자는 HTTP 프로토콜을 사용하여 요청한다. 이 요청을 GET request라고 한다.
+
+주소 표시줄에 URL을 입력하고 페이지가 로드되면 실제로 서버에 GET 요청을 보내 응답을 얻고 브라우저에 응답을 표시한다.
+
+사용자 브라우저의 GET 요청에 서버가 응답하도록 하려면 다음과 같이 "홈 URL" 및 "eventHandler 기능"을 사용하는 .get()을 설정합니다:
+
+```js
+const handleHome = () => console.log('Somebody is trying to go home.');
+app.get('/', handleHome);
+```
+
+server.js(익스프레스 서버가 시작된 후에 배치해야 함)에 이러한 코드가 있으면 사용자의 GET 요청에 응답하는 방법을 알 수 있습니다.
+
+그러나 EventHandler는 아무것도 반환하지 않기 때문에 서버의 응답을 기다리며 브라우저를 계속 로드합니다.
