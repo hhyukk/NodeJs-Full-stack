@@ -33,7 +33,7 @@ package-lock.json은 node_modules 구조나 package.json이 수정되고 생성�
 
 Babel이란 최신 ES6, ES7 버전의 JavaScript 코드를, ES5버전의 코드로 바꾸어주는 Node.js 패키지
 
-## Babel 설치
+### Babel 설치
 
 npm install --save-dev @babel/core
 
@@ -54,3 +54,5 @@ https://babeljs.io/setup#installation
 @babel/preset-env는 환경에 필요한 구문 변환을 세부적으로 관리할 필요 없이 최신 JavaScript를 사용할 수 있게 해주는 스마트한 preset
 
 https://babeljs.io/docs/en/babel-preset-env
+
+# Nodemon
