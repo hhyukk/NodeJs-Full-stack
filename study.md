@@ -49,10 +49,16 @@ babel.config.json파일 생성
 
 https://babeljs.io/setup#installation
 
-@babel/preset-env
-
 @babel/preset-env는 환경에 필요한 구문 변환을 세부적으로 관리할 필요 없이 최신 JavaScript를 사용할 수 있게 해주는 스마트한 preset
 
 https://babeljs.io/docs/en/babel-preset-env
 
+script를 `node index.js`에서 `babel-node index.js`로 수정하여 사용
+
 # Nodemon
+
+Nodemon은 프로젝트 폴더의 파일들을 모니터링 하고 있다가 파일이 수정되면 서버를 자동으로 restart 시켜주는 패키지
+
+npm install @babel/core @babel/node --save-dev
+
+script를 `nodemon --exec babel-node index.js` 로 수정
