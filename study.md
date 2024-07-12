@@ -132,3 +132,26 @@ app.use는 global middleware를 만들 수 있게 해주는 함수
 global middleware란 어떤 url을 들어가도 사용하게 되는걸 의미함
 
 middleware는 express가 위에서 아래로 읽기 때문를 먼저 use 해주고 그 다음에 url을 get 해주는 순서를 지켜줘야한다
+
+# Morgan
+
+NodeJS를 위한 HTTP request logger
+
+`npm i morgan`
+
+https://www.npmjs.com/package/morgan
+
+### Morgan 사용법
+
+https://www.npmjs.com/package/morgan#examples
+
+skip을 사용해서 특정 statusCode만 필터 가능
+
+```js
+// EXAMPLE: only log error responses
+morgan('combined', {
+  skip: function (req, res) {
+    return res.statusCode < 400;
+  },
+});
+```
