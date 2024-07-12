@@ -155,3 +155,29 @@ morgan('combined', {
   },
 });
 ```
+
+# Router
+
+모든 Express 애플리케이션에는 앱 라우터가 내장되어 있다.
+
+라우터는 미들웨어 자체처럼 작동하므로 app.use()에 대한 인수로 또는 다른 라우터의 use() 메서드에 대한 인수로 사용할 수 있다.
+
+최상위 익스프레스 객체에는 새로운 라우터 객체를 생성하는 Router() 메서드가 있다.
+
+https://expressjs.com/ko/4x/api.html#router
+
+`app.get([URL], [Handler])`를 사용하여 요청을 처리하는 대신 라우터를 만들고 라우터가 GET 요청을 처리하도록 할 수 있다.
+
+`app.use('/', globalRouter);` - 이러한 방식으로 사용자가 GET 요청을 보내면 요청이 homeRouter로 라우팅된다.
+
+그런 다음 다음 다음과 같이 globalRouter라는 상수 변수를 만든다:
+
+`const globalRouter = express.Router();`
+
+다음과 같이 핸들러 함수를 만든다:
+
+`const handleHome = (req, res) => res.send('Home');`
+
+라우터를 핸들러에 연결하려면 아래 코드를 사용한다:
+
+`globalRouter.get('/', handleHome);`
