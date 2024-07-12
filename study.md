@@ -181,3 +181,14 @@ https://expressjs.com/ko/4x/api.html#router
 라우터를 핸들러에 연결하려면 아래 코드를 사용한다:
 
 `globalRouter.get('/', handleHome);`
+
+# Export
+
+다른 라우터에 다른 컨트롤러를 가져오기
+
+export default 는 한파일에 하나밖에 export하지 못함
+
+`export const (controller이름) = (req,res) => {}`
+
+이렇게 export 한 후에는 `import {control1, control2} from ""` 처럼
+import 할 수 있다
