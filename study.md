@@ -192,3 +192,8 @@ export default 는 한파일에 하나밖에 export하지 못함
 
 이렇게 export 한 후에는 `import {control1, control2} from ""` 처럼
 import 할 수 있다
+
+# 정규표현식
+
+- \w+: 모든 문자, 숫자 선택
+- \d+: 모든 숫자 선택
