@@ -197,3 +197,65 @@ import 할 수 있다
 
 - \w+: 모든 문자, 숫자 선택
 - \d+: 모든 숫자 선택
+
+# Pug
+
+Pug는 Haml의 영향을 많이 받은, Node.js 및 브라우저용 JavaScript로 구현된 고성능 템플릿 엔진입니다.
+
+- npm i pug
+- https://www.npmjs.com/package/pug
+
+### 템플릿 엔진이란?
+
+웹페이지 구성 시 가장 기본적으로 쓰이는 마크업 언어인 HTML은 정적인 언어이다.
+
+주어진 기능만 사용할 수 있으며, 직접 기능을 추가할 수 없다. 그러나 자바스크립트와 함께라면 가능하다.
+
+템플릿 엔진은 자바스크립트를 사용하여 HTML을 렌더링할 수 있게 해준다.
+
+따라서 기존 HTML과 문법이 살짝 다를 수도 있고, 자바스크립트 문법이 들어가기도 한다.
+
+템플릿 엔진에는 대표적으로 퍼그 (Pug), 넌적스 (Nunjucks), EJS, Handlebars 등이 있다.
+
+### Express와 함께 사용
+
+Express가 템플리트를 렌더링하려면 다음과 같은 애플리케이션 설정이 필요합니다.
+
+views, 템플리트가 있는 디렉토리. 예: app.set('views', './views')
+
+view engine, 사용할 템플리트 엔진. 예: app.set('view engine', 'pug')
+
+https://expressjs.com/ko/guide/using-template-engines.html
+
+### Pug 안에 Js 넣는법
+
+`#{Js code}`
+
+### Pug 장점
+
+1. 깔끔한 html 작성
+2. html안에 JS 작성가능
+3. 반복하지 않고 한파일로 모든 템플릿 업데이트 가능!
+
+### Includes
+
+include를 사용하면 한 Pug 파일의 내용을 다른 파일에 삽입할 수 있습니다.
+
+https://pugjs.org/language/includes.html
+
+# Error
+
+`Error: Failed to lookup view "home" in views directory "/home/hhyukk/NodeJs/views"`
+
+views 디렉토리에서 "home"이라는 view를 찾는데 실패했다는 오류 발생
+
+즉, express가 views 디렉토리에서 home이라는 파일을 찾지 못했다는 뜻
+
+기본적으로 express는 cwd(현재 작업 디렉토리) + /views에서 pug 파일을 찾지만 실제로 pug 파일은 cwd/src/views에 있기 때문에 오류가 발생한 것
+
+cwd는 node.js를 실행하는 디렉토리이고 현재 node.js를 실행하는건 package.json이기 때문에 NodeJs/package.json이 cwd가 됨
+
+### 해결방법
+
+1. views 폴더를 src 밖으로 꺼낸다.
+2. `app.set('views', process.cwd() + '/src/views');`을 사용해서 express의 default 값을 변경해준다.
