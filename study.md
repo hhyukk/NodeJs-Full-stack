@@ -243,6 +243,14 @@ include를 사용하면 한 Pug 파일의 내용을 다른 파일에 삽입할 �
 
 https://pugjs.org/language/includes.html
 
+### Template Inheritance
+
+Pug는 템플릿 상속을 지원합니다. 템플릿 상속은 block과 extends키워드를 통해 사용합니다.
+
+템플릿의 block에는 하위 템플릿을 대체할 수 있습니다.
+
+https://pugjs.org/language/inheritance.html
+
 # Error
 
 `Error: Failed to lookup view "home" in views directory "/home/hhyukk/NodeJs/views"`
