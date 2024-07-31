@@ -267,7 +267,7 @@ https://pugjs.org/language/conditionals.html
 
 Pug는 each와 while라는 두 가지 기본 반복 방법을 지원합니다.
 
-```
+```js
 ul
   each val in [1, 2, 3, 4, 5]
     li= val
@@ -275,7 +275,7 @@ ul
 
 배열이나 객체에 반복할 값이 없으면 실행될 else 블록을 추가할 수도 있습니다.
 
-```
+```js
 - var values = [];
 ul
   each val in values
@@ -285,6 +285,26 @@ ul
 ```
 
 https://pugjs.org/language/iteration.html
+
+### Mixins
+
+Mixin을 사용하면 재사용 가능한 Pug 블록을 만들 수 있습니다.
+
+또한 Mixindm은 함수로 컴파일되며 인수를 사용할 수 있습니다.
+
+```js
+//- Declaration
+mixin list
+  ul
+    li foo
+    li bar
+    li baz
+//- Use
++list
++list
+```
+
+https://pugjs.org/language/mixins.html
 
 # MVP
 
