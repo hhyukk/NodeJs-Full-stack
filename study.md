@@ -263,6 +263,29 @@ https://expressjs.com/ko/api.html#res.render
 
 https://pugjs.org/language/conditionals.html
 
+### Iteration (반복)
+
+Pug는 each와 while라는 두 가지 기본 반복 방법을 지원합니다.
+
+```
+ul
+  each val in [1, 2, 3, 4, 5]
+    li= val
+```
+
+배열이나 객체에 반복할 값이 없으면 실행될 else 블록을 추가할 수도 있습니다.
+
+```
+- var values = [];
+ul
+  each val in values
+    li= val
+  else
+    li There are no values
+```
+
+https://pugjs.org/language/iteration.html
+
 # MVP
 
 https://andybrewer.github.io/mvp
