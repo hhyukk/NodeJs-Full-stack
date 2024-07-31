@@ -259,6 +259,10 @@ locals에는 view에 전달한 local 변수를 지정할 수 있습니다.
 
 https://expressjs.com/ko/api.html#res.render
 
+### Conditionals(조건문)
+
+https://pugjs.org/language/conditionals.html
+
 # MVP
 
 https://andybrewer.github.io/mvp
