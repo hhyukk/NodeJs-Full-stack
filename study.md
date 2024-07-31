@@ -251,6 +251,14 @@ Pug는 템플릿 상속을 지원합니다. 템플릿 상속은 block과 extends
 
 https://pugjs.org/language/inheritance.html
 
+### `res.render(view [, locals] [, callback])`
+
+res.render()를 통해 view를 렌더링하고 렌더링된 HTML 문자열을 클라이언트에 보냅니다.
+
+locals에는 view에 전달한 local 변수를 지정할 수 있습니다.
+
+https://expressjs.com/ko/api.html#res.render
+
 # Error
 
 `Error: Failed to lookup view "home" in views directory "/home/hhyukk/NodeJs/views"`
