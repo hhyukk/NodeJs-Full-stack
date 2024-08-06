@@ -314,6 +314,27 @@ https://andybrewer.github.io/mvp
 
 link(rel="stylesheet" href="https://unpkg.com/mvp.css")
 
+# req.body
+
+req.body에는 form을 통해 submit된 데이터의 키-값 쌍을 포함합니다.
+
+기본적으로는 undefined이며 express.json() 또는 express.urlencoded()와 같은 바디 파싱 미들웨어를 사용할 때 값을 받아옵니다.
+
+```js
+// 애플리케이션/json 파싱
+app.use(express.json());
+// application/x-www-form-urlencoded파싱 (form데이터 파싱)
+app.use(express.urlencoded({ extended: true }));
+```
+
+https://expressjs.com/ko/api.html#req.body
+
+express.urlencoded([options])
+Express에 내장된 미들웨어 기능입니다.
+urlencoded 페이로드로 들어오는 요청을 구문 분석하고 바디 파서를 기반으로 합니다.
+
+https://expressjs.com/ko/api.html#express.urlencoded
+
 # Error
 
 `Error: Failed to lookup view "home" in views directory "/home/hhyukk/NodeJs/views"`
