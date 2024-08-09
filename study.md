@@ -335,6 +335,28 @@ urlencoded 페이로드로 들어오는 요청을 구문 분석하고 바디 파
 
 https://expressjs.com/ko/api.html#express.urlencoded
 
+# MongoDB
+
+MongoDB는 문서 지향적인 NoSQL 데이터베이스로, 대량의 비정형 데이터를 저장하고 처리하는 데 사용된다.
+
+## 문서 지향적이란?
+
+문서 지향적(Document-oriented)이란 데이터베이스 시스템의 한 종류이다.
+
+MongnDB에서는 비정형 데이터를 저장하고 관리하기 위해 문서(Document)라는 개념을 중심으로 데이터를 구성한다.
+
+```
+{
+  "name": "John",
+  "age": 30,
+  "email": "john@example.com"
+}
+```
+
+### WSL에서 MongoDB 설치
+
+https://www.mongodb.com/ko-kr/docs/manual/tutorial/install-mongodb-on-ubuntu/#std-label-install-mdb-community-ubuntu
+
 # Error
 
 `Error: Failed to lookup view "home" in views directory "/home/hhyukk/NodeJs/views"`
