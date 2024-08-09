@@ -345,7 +345,7 @@ MongoDB는 문서 지향적인 NoSQL 데이터베이스로, 대량의 비정형 
 
 MongnDB에서는 비정형 데이터를 저장하고 관리하기 위해 문서(Document)라는 개념을 중심으로 데이터를 구성한다.
 
-```
+```json
 {
   "name": "John",
   "age": 30,
@@ -356,6 +356,16 @@ MongnDB에서는 비정형 데이터를 저장하고 관리하기 위해 문서(
 ### WSL에서 MongoDB 설치
 
 https://www.mongodb.com/ko-kr/docs/manual/tutorial/install-mongodb-on-ubuntu/#std-label-install-mdb-community-ubuntu
+
+# Mongoose
+Mongoose 모듈은 MongoDB 라는 NoSQL 데이터베이스를 Node.js로 사용할 수 있도록 하는 확장 모듈 중 하나 입니다.
+
+## MongoDB 연결
+```js
+import mongoose from 'mongoose';
+
+mongoose.connect('mongodb://127.0.0.1:27017/wetube');
+```
 
 # Error
 
