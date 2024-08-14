@@ -419,6 +419,30 @@ https://mongoosejs.com/docs/models.html
 
 https://mongoosejs.com/docs/queries.html#queries
 
+## MongoDB의 collection이름이 Video가 아닌 videos인 이유
+
+Mongoose는 자동으로 모델을 찾고, 해당 모델의 이름을 따서 소문자+뒤에 s(복수형)을 붙여 컬렉션을 생성합니다.
+
+Tank 모델은 -> 컬렉션에 저장될 때, tanks로 저장됩니다.
+
+`Document.prototype.save()`
+
+https://mongoosejs.com/docs/api.html#document_Document-save
+
+`Model.create()`
+
+하나 이상의 문서를 데이터베이스에 저장하기 위한 손쉬운 방법입니다.
+
+MyModel.create(docs)는 문서의 모든 문서에 대해 새로운 MyModel(doc).save()를 수행합니다.
+
+create()을 하게 되면 save()를 생략할 수 있습니다.
+
+create()이 다음 미들웨어인 save()를 트리거하기 때문입니다.
+
+https://mongoosejs.com/docs/api.html#model_Model.create
+
+Collection: Document들을 담고 있는 묶음
+
 # async function
 
 async function 선언은 AsyncFunction객체를 반환하는 하나의 비동기 함수를 정의합니다. 비동기 함수는 이벤트 루프를 통해 비동기적으로 작동하는 함수로, 암시적으로 Promise를 사용하여 결과를 반환합니다. 그러나 비동기 함수를 사용하는 코드의 구문과 구조는, 표준 동기 함수를 사용하는것과 많이 비슷합니다.
