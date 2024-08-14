@@ -218,6 +218,8 @@ import 할 수 있다
 - \w+: 모든 문자, 숫자 선택
 - \d+: 모든 숫자 선택
 
+http://regexpal.com
+
 # Pug
 
 Pug는 Haml의 영향을 많이 받은, Node.js 및 브라우저용 JavaScript로 구현된 고성능 템플릿 엔진입니다.
@@ -377,6 +379,29 @@ MongnDB에서는 비정형 데이터를 저장하고 관리하기 위해 문서(
 
 https://www.mongodb.com/ko-kr/docs/manual/tutorial/install-mongodb-on-ubuntu/#std-label-install-mdb-community-ubuntu
 
+## MongoDB Document
+
+몽고DB는 ObjectID를 24바이트 16진 문자열 표현으로 반환한다.
+
+https://mongodb.github.io/node-mongodb-native/api-bson-generated/objectid.html
+https://docs.mongodb.com/manual/reference/method/ObjectId/
+
+## function
+
+### findOne
+
+해당 조건과 일치하는 document를 찾는다.
+
+\_id로 찾는 경우에는 findById()를 사용할 것을 권장
+
+findById(id)는 거의\* findOne({ \_id: id })과 동일합니다.
+
+https://mongoosejs.com/docs/api.html#model_Model.findOne
+
+### findById
+
+https://mongoosejs.com/docs/api.html#model_Model.findById
+
 # Mongoose
 
 Mongoose 모듈은 MongoDB 라는 NoSQL 데이터베이스를 Node.js로 사용할 수 있도록 하는 확장 모듈 중 하나 입니다.
@@ -396,6 +421,16 @@ mongoose.connect('mongodb://127.0.0.1:27017/wetube');
 각 스키마는 MongoDB 컬렉션에 매핑되고 해당 컬렉션 내 문서의 모양을 정의합니다.
 
 https://mongoosejs.com/docs/guide.html#schemas
+
+### 몽구스 스키마 타입 확인
+
+Mongoose 스키마는 Mongoose 모델을 구성하기 위한 객체로 생각할 수 있습니다.
+https://mongoosejs.com/docs/schematypes.html
+
+### 몽구스 스키마 타입 정의
+
+몽구스의 모든 것은 스키마로 시작합니다. 각 스키마는 MongoDB 컬렉션에 매핑되고 해당 컬렉션 내 문서의 모양을 정의합니다.
+https://mongoosejs.com/docs/guide.html
 
 ## Models
 
