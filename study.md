@@ -446,6 +446,24 @@ https://mongoosejs.com/docs/guide.html#models
 
 https://mongoosejs.com/docs/models.html
 
+### Statics
+
+모델에 static 함수를 추가할 수도 있습니다.
+
+스키마에서 컴파일된 모델에 정적 "class" 메서드를 추가합니다.
+
+Static 사용하는 두 가지 방법
+
+```
+animalSchema.statics.findByName = function(name) {
+return this.find({ name: new RegExp(name, 'i') });
+};
+
+animalSchema.static('findByBreed', function(breed) { return this.find({ breed }); });
+```
+
+https://mongoosejs.com/docs/guide.html#statics
+
 ## Queries
 
 몽구스 모델은 CRUD 작업을 위한 여러 정적 헬퍼함수를 제공합니다.
