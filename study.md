@@ -386,22 +386,6 @@ https://www.mongodb.com/ko-kr/docs/manual/tutorial/install-mongodb-on-ubuntu/#st
 https://mongodb.github.io/node-mongodb-native/api-bson-generated/objectid.html
 https://docs.mongodb.com/manual/reference/method/ObjectId/
 
-## function
-
-### findOne
-
-해당 조건과 일치하는 document를 찾는다.
-
-\_id로 찾는 경우에는 findById()를 사용할 것을 권장
-
-findById(id)는 거의\* findOne({ \_id: id })과 동일합니다.
-
-https://mongoosejs.com/docs/api.html#model_Model.findOne
-
-### findById
-
-https://mongoosejs.com/docs/api.html#model_Model.findById
-
 # Mongoose
 
 Mongoose 모듈은 MongoDB 라는 NoSQL 데이터베이스를 Node.js로 사용할 수 있도록 하는 확장 모듈 중 하나 입니다.
@@ -495,6 +479,30 @@ pre("save", async function ());
 ```
 
 https://mongoosejs.com/docs/middleware.html#pre
+
+## function
+
+### findOne
+
+해당 조건과 일치하는 document를 찾는다.
+
+\_id로 찾는 경우에는 findById()를 사용할 것을 권장
+
+findById(id)는 거의\* findOne({ \_id: id })과 동일합니다.
+
+https://mongoosejs.com/docs/api.html#model_Model.findOne
+
+### findById
+
+https://mongoosejs.com/docs/api.html#model_Model.findById
+
+### findByIdAndDelete()
+
+document의 \_id 필드로 MongoDB findOneAndDelete() 명령을 실행합니다.
+
+findByIdAndDelete(id)는 findOneAndDelete({ \_id: id })의 줄임말입니다.
+
+https://mongoosejs.com/docs/api.html#model_Model.findByIdAndDelete
 
 ## MongoDB의 collection이름이 Video가 아닌 videos인 이유
 
