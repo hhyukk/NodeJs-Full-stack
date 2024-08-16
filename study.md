@@ -357,9 +357,47 @@ urlencoded 페이로드로 들어오는 요청을 구문 분석하고 바디 파
 
 https://expressjs.com/ko/api.html#express.urlencoded
 
+# req.query
+
+라우트 안에 query string parameter를 포함하고 있는 객체로, URL에서 데이터를 가져올 때 주로 사용한다.
+
+예) ?keyword="food" => {keyword: "food"}
+
+query parse가 비활성화로 설정되면 빈 객체 {}이고, 그렇지 않으면 구성된 query parse의 결과입니다.
+
+https://expressjs.com/ko/api.html#req.query
+
 # MongoDB
 
 MongoDB는 문서 지향적인 NoSQL 데이터베이스로, 대량의 비정형 데이터를 저장하고 처리하는 데 사용된다.
+
+## MongoDB regex ($regex)
+
+몽고DB에서 정규표현식을 사용하기 위해 사용하는 키워드
+
+쿼리의 패턴 일치 문자열에 대한 정규식 기능을 제공합니다.
+
+https://docs.mongodb.com/manual/reference/operator/query/regex
+
+### RegExp mdn
+
+RegExp 생성자는 패턴을 사용해 텍스트를 판별할 때 사용합니다.
+
+https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/RegExp
+
+#### RegExp 사용 방법
+
+RegExp 객체는 리터럴 표기법과 생성자로써 생성할 수 있습니다.
+
+리터럴 표기법의 매개변수는 두 빗금으로 감싸야 하며 따옴표를 사용하지 않습니다.
+
+생성자 함수의 매개변수는 빗금으로 감싸지 않으나 따옴표를 사용합니다.
+
+```js
+// /ab+c/i 를 아래 RegExp 생성자를 이용해서 만들 수 있습니다.
+new RegExp(/ab+c/, 'i'); // 리터럴 표기법
+new RegExp('ab+c', 'i'); // 생성자 함수
+```
 
 ## 문서 지향적이란?
 
@@ -456,6 +494,12 @@ https://mongoosejs.com/docs/guide.html#statics
 
 https://mongoosejs.com/docs/queries.html#queries
 
+### Query.prototype.sort()
+
+정렬 순서를 설정합니다. 개체가 전달되면 허용되는 값은 asc, desc, 오름차순, 내림차순, 1 및 -1입니다.
+
+https://mongoosejs.com/docs/api.html#query_Query-sort
+
 ## Middleware
 
 미들웨어(pre또는 post훅이라고도 불림)는 비동기 함수를 실행하는 동안 제어가 전달되는 함수입니다.
@@ -503,6 +547,14 @@ document의 \_id 필드로 MongoDB findOneAndDelete() 명령을 실행합니다.
 findByIdAndDelete(id)는 findOneAndDelete({ \_id: id })의 줄임말입니다.
 
 https://mongoosejs.com/docs/api.html#model_Model.findByIdAndDelete
+
+### Model.find()
+
+documents를 찾습니다. (findOne과 다르게 전체 document를 찾습니다.)
+
+Mongoose는 명령이 전송되기 전에 모델의 스키마와 일치하도록 필터를 캐스팅합니다.
+
+https://mongoosejs.com/docs/api.html#model_Model.find
 
 ## MongoDB의 collection이름이 Video가 아닌 videos인 이유
 
