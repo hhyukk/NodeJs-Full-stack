@@ -478,7 +478,9 @@ https://mongoosejs.com/docs/api.html#model_Model.create
 
 Collection: Document들을 담고 있는 묶음
 
-# async function
+# JavaScript
+
+## async function
 
 async function 선언은 AsyncFunction객체를 반환하는 하나의 비동기 함수를 정의합니다. 비동기 함수는 이벤트 루프를 통해 비동기적으로 작동하는 함수로, 암시적으로 Promise를 사용하여 결과를 반환합니다. 그러나 비동기 함수를 사용하는 코드의 구문과 구조는, 표준 동기 함수를 사용하는것과 많이 비슷합니다.
 
@@ -487,6 +489,18 @@ async(비동기) -- await(수행될 때까지 기다려준다)
 에러는 try-catch문으로 잡는다.
 
 https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Statements/async_function
+
+## String.prototype.startsWith()
+
+startsWith() 메소드는 어떤 문자열이 특정 문자로 시작하는지 확인하여 결과를 true 혹은 false로 반환합니다.
+
+https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/String/startsWith
+
+## String.prototype.endsWith()
+
+The endsWith() 메서드를 사용하여 어떤 문자열에서 특정 문자열로 끝나는지를 확인할 수 있으며, 그 결과를 true 혹은 false로 반환한다.
+
+https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/String/endsWith
 
 # Error
 
