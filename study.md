@@ -454,6 +454,14 @@ https://mongoosejs.com/docs/schematypes.html
 몽구스의 모든 것은 스키마로 시작합니다. 각 스키마는 MongoDB 컬렉션에 매핑되고 해당 컬렉션 내 문서의 모양을 정의합니다.
 https://mongoosejs.com/docs/guide.html
 
+### SchemaType.prototype.unique()
+
+고유 인덱스를 선언합니다.
+
+제약 조건을 위반하면 Mongoose 유효성 검사 오류가 아니라 저장할 때 MongoDB에서 E11000 오류를 반환합니다.
+
+https://mongoosejs.com/docs/api.html#schematype_SchemaType-unique
+
 ## Models
 
 `mongoose.model(modelName, schema);`
