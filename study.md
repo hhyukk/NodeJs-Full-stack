@@ -622,6 +622,22 @@ The endsWith() 메서드를 사용하여 어떤 문자열에서 특정 문자열
 
 https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/String/endsWith
 
+# 상태코드
+
+- 200(OK): 서버가 요청을 제대로 처리했다는 뜻이다. 이는 주로 서버가 요청한 페이지를 제공했다는 의미로 쓰인다.
+-
+- 400(Bad Request): 서버가 요청의 구문을 인식하지 못할 때 발생한다. 클라이언트 측에서 문제가 있을 때 주로 발생한다.
+-
+- 404(Not Found): 서버가 요청한 페이지를 찾을 수 없을 때 발생한다. 서버에 존재하지 않는 페이지에 대한 요청이 있을 경우 서버는 이 코드를 제공한다.
+- https://ko.wikipedia.org/wiki/HTTP_%EC%83%81%ED%83%9C_%EC%BD%94%EB%93%9C
+
+## res.status(code)
+
+response에 대한 HTTP 상태를 설정합니다. (status를 설정한다.)
+
+https://expressjs.com/ko/api.html#res.status
+https://nodejs.org/api/http.html#http_response_statuscode
+
 # Error
 
 `Error: Failed to lookup view "home" in views directory "/home/hhyukk/NodeJs/views"`
