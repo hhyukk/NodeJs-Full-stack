@@ -424,6 +424,16 @@ https://www.mongodb.com/ko-kr/docs/manual/tutorial/install-mongodb-on-ubuntu/#st
 https://mongodb.github.io/node-mongodb-native/api-bson-generated/objectid.html
 https://docs.mongodb.com/manual/reference/method/ObjectId/
 
+## $or
+
+$or 연산자는 둘 이상의 조건에 대해 논리적 OR 연산을 수행하고 조건 중 하나 이상을 충족하는 문서를 선택합니다.
+
+```js
+db.inventory.find({ $or: [{ quantity: { $lt: 20 } }, { price: 10 }] });
+```
+
+https://docs.mongodb.com/manual/reference/operator/query/or/#mongodb-query-op.-or
+
 # Mongoose
 
 Mongoose 모듈은 MongoDB 라는 NoSQL 데이터베이스를 Node.js로 사용할 수 있도록 하는 확장 모듈 중 하나 입니다.
