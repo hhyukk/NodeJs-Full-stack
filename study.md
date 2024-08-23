@@ -45,14 +45,44 @@ package-lock.json은 node_modules 구조나 package.json이 수정되고 생성�
 
 자바스크립트 프레임워크로 React, 자바 프레임워크로 Spring 등등이 있는 것처럼 Express는 node.js를 빠르고 간결하게 사용할 수 있게 해주는 NodeJS의 프레임워크이다.
 
-### Express의 특징
+## Express의 특징
 
 - Express는 서버 사이드 프레임워크로 node.js의 api를 단순화하고, 유용한 기능을 추가해 쉽게 서버를 구축할 수 있게 해준다.
 - 코드의 양을 줄여주고 유지 보수가 쉽게 해준다.
 - 확장성을 지향한다. 불필요한 간섭이 없고 사용자가 필요한 라이브러리를 추가해서 확장 가능하다.
 - http request와 response를 컨트롤할 수 있다.
 
-### node.js express와 일반 서버의 차이
+## express-session
+
+Express용 세션 미들웨어
+
+세션 데이터는 쿠키 자체에 저장되지 않고 세션 ID에만 저장됩니다. 세션 데이터는 서버 측에 저장됩니다.
+
+`npm i express-session`
+
+https://www.npmjs.com/package/express-session
+
+### Session 사용 예시
+
+https://github.com/expressjs/session#example
+
+### req.session.id 또는 req.sessionID
+
+브라우저가 request할 때 같이 보내는 session id
+
+### resave (변경 사항이 없어도 저장)
+
+request하는 동안 세션이 수정되지 않은 경우에도 세션이 세션 저장소에 다시 저장되도록 합니다.
+
+https://github.com/expressjs/session#resave
+
+### saveUninitialized (세션 초기화 전에도 저장)
+
+"초기화되지 않은" 세션을 저장소에 강제로 저장합니다.
+
+https://github.com/expressjs/session#saveuninitialized
+
+## node.js express와 일반 서버의 차이
 
 보통 일반적인 server에서는 1부터 9까지 요청이 있으면
 1부터 9까지 순서대로 실행을 합니다.
