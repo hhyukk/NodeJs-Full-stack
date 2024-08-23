@@ -94,11 +94,19 @@ https://github.com/expressjs/session#example
 
 request하는 동안 세션이 수정되지 않은 경우에도 세션이 세션 저장소에 다시 저장되도록 합니다.
 
+세션을 항상 저장할지 여부를 정하는 값 (익명성이나 봇에게 세션을 주게되면 DB도 그만큼 커지고 유지보수가 어렵기에 false 권장)
+
 https://github.com/expressjs/session#resave
 
 ### saveUninitialized (세션 초기화 전에도 저장)
 
 "초기화되지 않은" 세션을 저장소에 강제로 저장합니다.
+
+request에서 새로 생성된 session에 아무런 작업이 이뤄지지 않은 상태도 저장할 것인가?
+
+- true: 클라이언트들이 서버에 방문한 총 횟수를 알고자 할때 사용한다.
+
+- false: uninitialized 상태인 세션을 강제로 저장하면 내용도 없는 빈 세션이 스토리지에 계속 쌓일수 있다. 이를 방지, 저장공간을 아끼기 위해 사용한다.
 
 https://github.com/expressjs/session#saveuninitialized
 
