@@ -13,6 +13,29 @@ https://www.npmjs.com/
 - node -v: node 버전 확인
 - npm - v: npm 버전 확인
 
+## bcrypt
+
+암호를 해시하는 데 도움이 되는 라이브러리입니다.
+
+`npm i bcrypt`
+
+https://www.npmjs.com/package/bcrypt
+
+Schema.prototype.pre()
+https://mongoosejs.com/docs/api.html#schema_Schema-pre
+
+## bcrypt를 이용해서 비밀번호 비교
+
+password: 유저가 입력한 비밀번호
+
+user.passwordHash: DB에 해시화되서 저장된 비밀번호
+
+```js
+const match = await bcrypt.compare(password, user.passwordHash);
+```
+
+https://www.npmjs.com/package/bcrypt
+
 # Dependencies
 
 package.json파일의 dependencies는 프로젝트를 실행하는 데 필요한 필수 모듈들의 목록이다.
@@ -531,8 +554,6 @@ https://mongoosejs.com/docs/middleware.html#middleware
 document middleware함수에서 this는 현재 document를 참조합니다.
 
 https://mongoosejs.com/docs/middleware.html#types-of-middleware
-
-데이터베이스에 전체 비디오 삭제 -> db.videos.remove({})가 deprecated됐다고 뜨시는 분들은
 
 #### Pre
 
