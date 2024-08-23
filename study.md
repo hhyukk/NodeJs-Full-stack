@@ -51,6 +51,26 @@ package-lock.json은 node_modules 구조나 package.json이 수정되고 생성�
 - 코드의 양을 줄여주고 유지 보수가 쉽게 해준다.
 - 확장성을 지향한다. 불필요한 간섭이 없고 사용자가 필요한 라이브러리를 추가해서 확장 가능하다.
 - http request와 response를 컨트롤할 수 있다.
+-
+
+## res.locals
+
+request 범위가 지정된 response 로컬 변수를 포함하는 객체이므로 request, response 주기동안 렌더링된 view에서만 사용할 수 있습니다.
+
+(Pug나 EJS같은 템플릿 엔진에서 사용 가능하다는 의미)
+
+이 속성은 request path, 인증된 사용자, 사용자 설정 등과 같은 request level의 정보를 노출하는 데 유용합니다.
+
+```js
+// 사용 예시
+app.use(function (req, res, next) {
+  res.locals.user = req.user;
+  res.locals.authenticated = !req.user.anonymous;
+  next();
+});
+```
+
+https://expressjs.com/ko/api.html#res.locals
 
 ## express-session
 
