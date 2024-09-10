@@ -243,6 +243,18 @@ mixin list
 
 https://pugjs.org/language/mixins.html
 
+## dotenv
+
+Dotenv는 .env 파일에서 process.env로 환경 변수를 로드하는 제로 종속성 모듈입니다.
+
+`npm i dotenv`
+
+https://www.npmjs.com/package/dotenv
+
+방법1. `import dotenv from "dotenv", dotenv.config()`
+
+방법2. `import "dotenv/config"`
+
 # Express
 
 자바스크립트 프레임워크로 React, 자바 프레임워크로 Spring 등등이 있는 것처럼 Express는 node.js를 빠르고 간결하게 사용할 수 있게 해주는 NodeJS의 프레임워크이다.
