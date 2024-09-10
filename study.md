@@ -714,7 +714,37 @@ response에 대한 HTTP 상태를 설정합니다. (status를 설정한다.)
 https://expressjs.com/ko/api.html#res.status
 https://nodejs.org/api/http.html#http_response_statuscode
 
-# Error
+# Set-Cookie
+
+Set-Cookie HTTP 응답 헤더는 서버에서 사용자 브라우저에 쿠키를 전송하기 위해 사용됩니다.
+
+https://developer.mozilla.org/ko/docs/Web/HTTP/Headers/Set-Cookie
+
+## 쿠키에 설정가능한 옵션
+
+### Domain
+
+쿠키가 적용되어야 하는 호스트를 지정.
+
+### Expires
+
+HTTP 타임스템프로 기록된 쿠키의 최대 생존 시간(수명).
+
+### Max-Age
+
+쿠키가 만료될 때 까지의 시간 (밀리세컨드)
+
+### secret
+
+이것은 세션 ID 쿠키에 서명하는 데 사용되는 비밀입니다.
+
+https://www.npmjs.com/package/express-session
+
+## COOKIE_SECRET에 넣을 랜덤 문자열 생성 사이트
+
+https://randomkeygen.com/
+
+# Error 1
 
 `Error: Failed to lookup view "home" in views directory "/home/hhyukk/NodeJs/views"`
 
@@ -730,3 +760,9 @@ cwd는 node.js를 실행하는 디렉토리이고 현재 node.js를 실행하는
 
 1. views 폴더를 src 밖으로 꺼낸다.
 2. `app.set('views', process.cwd() + '/src/views');`을 사용해서 express의 default 값을 변경해준다.
+
+# Error 2
+
+`Error: Cannot init client. Please provide correct options`
+
+mongodb에 세션을 저장하기 위해 .env 파일 안의 내용을 사용할 때 오류 발생
