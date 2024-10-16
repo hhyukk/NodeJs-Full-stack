@@ -756,6 +756,94 @@ https://www.npmjs.com/package/express-session
 
 https://randomkeygen.com/
 
+# Authorizing OAuth Apps
+
+다른 사용자가 OAuth 앱을 승인하도록 할 수 있습니다.
+
+GitHub의 OAuth 구현은 웹 브라우저에 대한 액세스 권한이 없는 앱에 대한 표준 인증 코드 부여 유형 및 OAuth 2.0 장치 인증 부여를 지원합니다.
+
+## Web application flow
+
+웹 애플리케이션 흐름: 브라우저에서 실행되는 표준 OAuth 앱에 대해 사용자에게 권한을 부여하는 데 사용됩니다.
+
+앱 사용자에게 권한을 부여하는 웹 애플리케이션 흐름은 다음과 같습니다.
+
+1. 로그인하려는 사이트에서 유저의 GitHub identity를 request하기 위해 유저를 GitHub 페이지로 리다이렉트시킵니다.
+2. 유저는 리다이렉트된 GitHub에서 승인을 하고, GitHub에 의해 다시 로그인하려는 사이트로 리다이렉트됩니다.
+3. 로그인 하려는 사이트는 유저의 액세스 토큰을 통해 API에 접근합니다.
+4. https://docs.github.com/en/developers/apps/building-oauth-apps/authorizing-oauth-apps
+
+## 깃허브 OAuth Apps Setting
+
+GitHub API를 사용하기 위해 등록한 애플리케이션입니다.
+
+https://github.com/settings/developers
+
+### Scopes for OAuth Apps (OAuth 앱의 범위)
+
+https://docs.github.com/en/developers/apps/building-oauth-apps/scopes-for-oauth-apps
+
+### Creating an OAuth App (OAuth앱 만들기)
+
+https://docs.github.com/en/developers/apps/building-oauth-apps/creating-an-oauth-app
+
+## Scopes for OAuth Apps
+
+OAuth 앱은 초기 리디렉션에서 범위를 요청할 수 있습니다. %20을 사용하여 공백으로 구분하여 여러 범위를 지정할 수 있습니다.
+
+// 사용 예시
+
+```
+https://github.com/login/oauth/authorize?client_id=...&scope=user%20repo_deployment
+```
+
+https://docs.github.com/en/developers/apps/building-oauth-apps/scopes-for-oauth-apps
+
+### URLSearchParams
+
+URLSearchParams 인터페이스는 URL의 쿼리 문자열에 대해 작업할 수 있는 유틸리티 메서드를 정의합니다.
+
+https://developer.mozilla.org/ko/docs/Web/API/URLSearchParams
+
+### URLSearchParams.toString()
+
+toString() 은 URLSearchParams 인터페이스의 메소드로서, URL에서 사용할 수 있는 쿼리 문자열을 리턴합니다.
+
+https://developer.mozilla.org/ko/docs/Web/API/URLSearchParams/toString
+
+## Users are redirected back to your site by GitHub
+
+사용자가 요청을 수락하면 GitHub는 코드 매개변수의 임시 code와 상태 매개변수의 이전 단계에서 제공한 state를 사용하여 사이트로 다시 리디렉션합니다.
+
+POST Request를 할 때, 반드시 필요한 파라미터들
+-> client_id, client_secret, code
+
+```
+POST https://github.com/login/oauth/access_token
+```
+
+https://docs.github.com/en/developers/apps/building-oauth-apps/authorizing-oauth-apps#2-users-are-redirected-back-to-your-site-by-github
+
+## Github REST API (User)
+
+사용자 API를 사용하면 인증된 사용자에 대한 공개 및 비공개 정보를 얻을 수 있습니다.
+
+https://docs.github.com/en/rest/reference/users
+
+### Get the authenticated user
+
+인증된 사용자가 기본 인증 또는 사용자 범위의 OAuth를 통해 인증되면 응답에 공개 및 비공개 프로필 정보가 나열됩니다. 인증된 사용자가 사용자 범위 없이 OAuth를 통해 인증된 경우 응답에는 공개 프로필 정보만 나열됩니다.
+
+### Add an email address for the authenticated user
+
+https://docs.github.com/en/rest/reference/users#add-an-email-address-for-the-authenticated-user
+
+### List public email addresses for the authenticated user
+
+인증된 사용자의 공개 이메일 주소 나열
+
+https://docs.github.com/en/rest/reference/users#list-public-email-addresses-for-the-authenticated-user
+
 # Error 1
 
 `Error: Failed to lookup view "home" in views directory "/home/hhyukk/NodeJs/views"`
@@ -778,3 +866,8 @@ cwd는 node.js를 실행하는 디렉토리이고 현재 node.js를 실행하는
 `Error: Cannot init client. Please provide correct options`
 
 mongodb에 세션을 저장하기 위해 .env 파일 안의 내용을 사용할 때 오류 발생
+
+### 해결방법
+
+`npm i dotenv`
+.env 파일에서 process.env로 환경 변수를 로드하는 제로 종속성 모듈을 사용하여 process.env로 환경 변수를 로드할 수 있게 함
