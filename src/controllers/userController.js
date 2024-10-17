@@ -31,7 +31,6 @@ export const postJoin = async (req, res) => {
     return res.status(400).render('join', { pageTitle: 'Post Join', errorMessage: error._message });
   }
 };
-
 export const getLogin = (req, res) => res.render('login');
 export const postLogin = async (req, res) => {
   const { username, password } = req.body;
@@ -54,12 +53,13 @@ export const postLogin = async (req, res) => {
   res.redirect('/');
 };
 
+// GitHub OAuth 로그인 요청을 처리하는 함수
 export const startGithubLogin = (req, res) => {
   const baseUrl = `https://github.com/login/oauth/authorize`;
 
   // GitHub OAuth 인증에 필요한 파라미터 설정
   const config = {
-    client_id: 'Ov23liPKJTOs1GgU2w9F', // GitHub OAuth 애플리케이션의 클라이언트 ID
+    client_id: process.env.GH_CLIENT, // GitHub OAuth 애플리케이션의 클라이언트 ID
     allow_signup: false, // 새로운 사용자 가입을 허용하지 않음 (false)
     scope: 'read:user user:email', // GitHub API에서 요청할 권한 범위 (사용자의 기본 정보 및 이메일)
   };
@@ -70,7 +70,28 @@ export const startGithubLogin = (req, res) => {
 
   return res.redirect(finalUrl);
 };
-export const finishGithubLogin = (req, res) => {};
+// GitHub OAuth 로그인 후 액세스 토큰을 처리하는 함수
+export const finishGithubLogin = async (req, res) => {
+  // GitHub OAuth 액세스 토큰 요청 URL의 기본 경로
+  const baseUrl = 'https://github.com/login/oauth/access_token';
+
+  // GitHub OAuth 액세스 토큰 요청에 필요한 파라미터 설정
+  const config = {
+    client_id: process.env.GH_CLIENT,
+    client_secret: process.env.GH_SECRET,
+    code: req.query.code, // GitHub 로그인 과정에서 전달된 인증 코드
+  };
+  const params = new URLSearchParams(config).toString();
+  const finalUrl = `${baseUrl}?${params}`;
+  const data = await fetch(finalUrl, {
+    method: 'POST',
+    headers: {
+      Accept: 'application/json', // 응답을 JSON 형식으로 받기 위해 Accept 헤더를 설정
+    },
+  });
+  const json = await data.json(); // 요청에 대한 응답 데이터를 JSON으로 변환
+  console.log(json);
+};
 export const logout = (req, res) => res.send('Log out');
 export const edit = (req, res) => res.rend('Edit User');
 export const remove = (req, res) => res.send('Remove User');

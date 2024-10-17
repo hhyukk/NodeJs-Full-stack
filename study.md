@@ -806,6 +806,19 @@ toString() 은 URLSearchParams 인터페이스의 메소드로서, URL에서 사
 
 https://developer.mozilla.org/ko/docs/Web/API/URLSearchParams/toString
 
+## Users are redirected back to your site by GitHub
+
+사용자가 요청을 수락하면 GitHub는 코드 매개변수의 임시 code와 상태 매개변수의 이전 단계에서 제공한 state를 사용하여 사이트로 다시 리디렉션합니다.
+
+POST Request를 할 때, 반드시 필요한 파라미터들 ->
+client_id, client_secret, code
+
+```
+POST https://github.com/login/oauth/access_token
+```
+
+https://docs.github.com/en/developers/apps/building-oauth-apps/authorizing-oauth-apps#2-users-are-redirected-back-to-your-site-by-github
+
 # Error 1
 
 `Error: Failed to lookup view "home" in views directory "/home/hhyukk/NodeJs/views"`
