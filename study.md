@@ -819,6 +819,17 @@ POST https://github.com/login/oauth/access_token
 
 https://docs.github.com/en/developers/apps/building-oauth-apps/authorizing-oauth-apps#2-users-are-redirected-back-to-your-site-by-github
 
+## Use the access token to access the API
+
+액세스 토큰을 사용하면 유저를 대신해 API에 요청할 수 있습니다.
+
+```
+Authorization: token OAUTH-TOKEN
+GET https://api.github.com/user
+```
+
+https://docs.github.com/en/developers/apps/building-oauth-apps/authorizing-oauth-apps#3-use-the-access-token-to-access-the-api
+
 # Error 1
 
 `Error: Failed to lookup view "home" in views directory "/home/hhyukk/NodeJs/views"`

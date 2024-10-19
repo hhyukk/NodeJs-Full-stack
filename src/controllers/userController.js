@@ -83,14 +83,32 @@ export const finishGithubLogin = async (req, res) => {
   };
   const params = new URLSearchParams(config).toString();
   const finalUrl = `${baseUrl}?${params}`;
-  const data = await fetch(finalUrl, {
-    method: 'POST',
-    headers: {
-      Accept: 'application/json', // 응답을 JSON 형식으로 받기 위해 Accept 헤더를 설정
-    },
-  });
-  const json = await data.json(); // 요청에 대한 응답 데이터를 JSON으로 변환
-  console.log(json);
+  const tokenRequest = await (
+    await fetch(finalUrl, {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json', // 응답을 JSON 형식으로 받기 위해 Accept 헤더를 설정
+      },
+    })
+  ).json();
+
+  // 액세스 토큰이 응답에 포함되어 있는지 확인
+  if ('access_token' in tokenRequest) {
+    const { access_token } = tokenRequest;
+
+    // GitHub 사용자 정보를 가져오기 위한 API 호출
+    const userRequest = await (
+      await fetch('https://api.github.com/user', {
+        headers: {
+          Authorization: `token ${access_token}`,
+        },
+      })
+    ).json();
+    console.log(userRequest);
+  } else {
+    // 액세스 토큰을 받지 못한 경우
+    return res.redirect('/login ');
+  }
 };
 export const logout = (req, res) => res.send('Log out');
 export const edit = (req, res) => res.rend('Edit User');
