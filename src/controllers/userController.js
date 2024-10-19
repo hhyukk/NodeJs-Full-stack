@@ -95,16 +95,34 @@ export const finishGithubLogin = async (req, res) => {
   // 액세스 토큰이 응답에 포함되어 있는지 확인
   if ('access_token' in tokenRequest) {
     const { access_token } = tokenRequest;
+    const apiUrl = 'https://api.github.com'; // GitHub API의 기본 URL 설정
 
     // GitHub 사용자 정보를 가져오기 위한 API 호출
-    const userRequest = await (
-      await fetch('https://api.github.com/user', {
+    const userData = await (
+      await fetch(`${apiUrl}/user`, {
         headers: {
           Authorization: `token ${access_token}`,
         },
       })
     ).json();
-    console.log(userRequest);
+    console.log(userData);
+
+    // GitHub 사용자 이메일 정보
+    const emailData = await (
+      await fetch(`${apiUrl}/user/emails`, {
+        headers: {
+          Authorization: `token ${access_token}`,
+        },
+      })
+    ).json();
+
+    // 이메일 정보 중에서 primary(기본 이메일)이며, verified(검증된 이메일)인 이메일을 찾음
+    const email = emailData.find((email) => email.primary === true && email.verified === true);
+
+    // 유효한 이메일이 없는 경우
+    if (!email) {
+      return res.redirect('/login ');
+    }
   } else {
     // 액세스 토큰을 받지 못한 경우
     return res.redirect('/login ');

@@ -830,6 +830,28 @@ GET https://api.github.com/user
 
 https://docs.github.com/en/developers/apps/building-oauth-apps/authorizing-oauth-apps#3-use-the-access-token-to-access-the-api
 
+## Github REST API (User)
+
+사용자 API를 사용하면 인증된 사용자에 대한 공개 및 비공개 정보를 얻을 수 있습니다.
+
+https://docs.github.com/en/rest/reference/users
+
+### Get the authenticated user
+
+인증된 사용자가 기본 인증 또는 사용자 범위의 OAuth를 통해 인증되면 응답에 공개 및 비공개 프로필 정보가 나열됩니다.
+
+인증된 사용자가 사용자 범위 없이 OAuth를 통해 인증된 경우 응답에는 공개 프로필 정보만 나열됩니다.
+
+### Add an email address for the authenticated user
+
+https://docs.github.com/en/rest/reference/users#add-an-email-address-for-the-authenticated-user
+
+### List public email addresses for the authenticated user
+
+인증된 사용자의 공개 이메일 주소 나열
+
+https://docs.github.com/en/rest/reference/users#list-public-email-addresses-for-the-authenticated-user
+
 # Error 1
 
 `Error: Failed to lookup view "home" in views directory "/home/hhyukk/NodeJs/views"`
