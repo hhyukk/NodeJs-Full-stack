@@ -35,7 +35,7 @@ export const getLogin = (req, res) => res.render('login');
 export const postLogin = async (req, res) => {
   const { username, password } = req.body;
   const pageTitle = 'Login';
-  const user = await User.findOne({ username });
+  const user = await User.findOne({ username, githubId: false });
   if (!user) {
     return res
       .status(400)
@@ -124,33 +124,32 @@ export const finishGithubLogin = async (req, res) => {
     }
 
     // 이메일로 기존 사용자를 DB에서 찾음
-    const existingUser = await User.findOne({ email: emailObj.email });
+    let user = await User.findOne({ email: emailObj.email });
 
-    // 기존 사용자가 있으면 세션에 로그인 상태와 사용자 정보를 저장
-    if (existingUser) {
-      req.session.loggedIn = true;
-      req.session.user = existingUser;
-      return res.redirect('/');
-    } else {
-      // 기존 사용자가 없으면 새 사용자 생성
+    // 기존 사용자가 없으면 새 사용자 생성
+    if (!user) {
       const user = await User.create({
         name: userData.name,
+        avatarUrl: userData.avatar_url,
         username: userData.login,
         email: emailObj.email,
         password: '',
         githubId: true,
         location: userData.location,
       });
-      req.session.loggedIn = true;
-      req.session.user = user;
-      return res.redirect('/');
     }
+    // 기존 사용자가 있으면 세션에 로그인 상태와 사용자 정보를 저장
+    req.session.loggedIn = true;
+    req.session.user = user;
+    return res.redirect('/');
   } else {
     // 액세스 토큰을 받지 못한 경우
     return res.redirect('/login');
   }
 };
-export const logout = (req, res) => res.send('Log out');
+export const logout = (req, res) => {
+  req.session.destroy(); //세션 제거
+  return res.redirect('/');
+};
 export const edit = (req, res) => res.rend('Edit User');
-export const remove = (req, res) => res.send('Remove User');
 export const see = (req, res) => res.send('See User');

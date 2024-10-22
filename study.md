@@ -852,6 +852,18 @@ https://docs.github.com/en/rest/reference/users#add-an-email-address-for-the-aut
 
 https://docs.github.com/en/rest/reference/users#list-public-email-addresses-for-the-authenticated-user
 
+## Session.destroy(callback)
+
+세션을 파괴하고 req.session 속성을 설정 해제합니다. 완료되면 콜백이 호출됩니다.
+
+```
+req.session.destroy(function(err) {
+// cannot access session here
+})
+```
+
+https://www.npmjs.com/package/express-session
+
 # Error 1
 
 `Error: Failed to lookup view "home" in views directory "/home/hhyukk/NodeJs/views"`
