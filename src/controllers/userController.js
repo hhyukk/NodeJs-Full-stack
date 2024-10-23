@@ -31,6 +31,7 @@ export const postJoin = async (req, res) => {
     return res.status(400).render('join', { pageTitle: 'Post Join', errorMessage: error._message });
   }
 };
+
 export const getLogin = (req, res) => res.render('login');
 export const postLogin = async (req, res) => {
   const { username, password } = req.body;
@@ -151,5 +152,11 @@ export const logout = (req, res) => {
   req.session.destroy(); //세션 제거
   return res.redirect('/');
 };
-export const edit = (req, res) => res.rend('Edit User');
+
+export const getEdit = (req, res) => {
+  return res.render('edit-profile', { pageTitle: 'Edit Profile' });
+};
+export const postEdit = (req, res) => {
+  return res.render('edit-profile');
+};
 export const see = (req, res) => res.send('See User');
