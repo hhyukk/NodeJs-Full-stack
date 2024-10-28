@@ -686,6 +686,20 @@ findByIdAndDelete(id)는 findOneAndDelete({ \_id: id })의 줄임말입니다.
 
 https://mongoosejs.com/docs/api.html#model_Model.findByIdAndDelete
 
+## Model.findByIdAndUpdate()
+
+문서의 \_id 필드로 mongodb findAndModify 업데이트 명령을 실행합니다. findByIdAndUpdate(id, ...)는 findOneAndUpdate({ \_id: id }, ...)와 동일합니다.
+
+```
+// 사용 예시
+Model.findByIdAndUpdate(id, { name: 'jason bourne' }, options, callback)
+
+// is sent as (+타입스크립트)
+Model.findByIdAndUpdate(id, { $set: { name: 'jason bourne' }}, options, callback)
+```
+
+https://mongoosejs.com/docs/api.html#model_Model.findByIdAndUpdate
+
 # JavaScript
 
 ## async function
