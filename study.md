@@ -255,6 +255,45 @@ https://www.npmjs.com/package/dotenv
 
 방법2. `import "dotenv/config"`
 
+## Multer
+
+Multer는 주로 파일 업로드에 사용되는 multipart/form-data를 처리하기 위한 node.js 미들웨어입니다.
+
+주의! Multer는 multipart(multipart/form-data)가 아닌 form을 처리하지 않습니다.
+
+`npm i multer`
+`enctype="multipart/form-data"`
+
+https://www.npmjs.com/package/multer
+
+### multer(opts)
+
+dest 또는 storage: 파일을 저장할 위치
+
+fileFilter: 허용되는 파일을 제어하는 ​​함수
+
+limits: 업로드된 데이터의 한계
+
+preservePath: 기본 이름 대신 파일의 전체 경로 유지
+
+사용 예시
+
+```
+const multer = require('multer')
+const upload = multer({ dest: './public/data/uploads/' })
+app.post('/stats', upload.single('uploaded_file'), function (req, res) {
+// req.file is the name of your file in the form above, here 'uploaded_file'
+// req.body will hold the text fields, if there were any
+console.log(req.file, req.body)
+});
+```
+
+### .single(fieldname)
+
+이름이 fieldname인 단일 파일을 수락합니다.
+
+단일 파일은 req.file에 저장됩니다.
+
 # Express
 
 자바스크립트 프레임워크로 React, 자바 프레임워크로 Spring 등등이 있는 것처럼 Express는 node.js를 빠르고 간결하게 사용할 수 있게 해주는 NodeJS의 프레임워크이다.

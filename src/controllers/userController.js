@@ -160,18 +160,21 @@ export const getEdit = (req, res) => {
 export const postEdit = async (req, res) => {
   const {
     session: {
-      user: { _id },
+      user: { _id, avatarUrl, email: sessionEmail, username: sessionUserName },
     },
     body: { name, email, username, location },
+    file,
   } = req;
-
   if (await User.exists({ $or: [{ username }, { email }] })) {
-    return res.status(400).json({ errorMessage: 'username or email is exists!!' });
+    if (sessionEmail === email || sessionUserName === username) {
+    } else {
+      return res.status(400).json({ errorMessage: 'username or email already exists!' });
+    }
   }
-
   const updatedUser = await User.findByIdAndUpdate(
     _id,
     {
+      avatarUrl: file ? file.path : avatarUrl,
       name,
       email,
       username,
@@ -196,7 +199,7 @@ export const postChangePassword = async (req, res) => {
     },
     body: { oldPassword, newPassword, newPasswordConfirmation },
   } = req;
-  const user = await User.findById(_id);
+  const user = await User.findById(_id); //로그아웃 없이 비밀번호 변경하는 경우 세션 업데이트가 필요
   const ok = await bcrypt.compare(oldPassword, user.password);
   if (!ok) {
     return res.status(400).render('users/change-password', {
