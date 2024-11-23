@@ -155,7 +155,6 @@ export const logout = (req, res) => {
 };
 
 export const getEdit = (req, res) => {
-  console.log(req.session.user);
   return res.render('edit-profile', { pageTitle: 'Edit Profile' });
 };
 export const postEdit = async (req, res) => {
@@ -214,11 +213,8 @@ export const postChangePassword = async (req, res) => {
       errorMessage: 'The password does not match the confirmation',
     });
   }
-  console.log('Old password', user.password);
   user.password = newPassword;
-  console.log('New unhashed pw', user.password);
   await user.save();
-  console.log('new pw', user.password);
 
   return res.redirect('/users/logout');
 };

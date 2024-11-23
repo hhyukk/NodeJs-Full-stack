@@ -7,7 +7,8 @@
     "url": "git+https://github.com/hhyukk/NodeJs-Full-stack.git"
   },
   "scripts": {
-    "dev": "nodemon --exec babel-node src/init.js"
+    "dev": "nodemon --exec babel-node src/init.js",
+    "assets": "webpack --config webpack.config.js"
   },
   "author": "hhyukk",
   "license": "MIT",
@@ -30,6 +31,9 @@
     "@babel/core": "^7.24.7",
     "@babel/node": "^7.24.7",
     "@babel/preset-env": "^7.24.7",
-    "nodemon": "^3.1.4"
+    "babel-loader": "^9.2.1",
+    "nodemon": "^3.1.4",
+    "webpack": "^5.96.1",
+    "webpack-cli": "^5.1.4"
   }
 }
