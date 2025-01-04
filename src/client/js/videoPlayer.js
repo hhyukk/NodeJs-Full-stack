@@ -88,14 +88,11 @@ const handlePlaySkip = (time) => {
   video.currentTime += time;
 };
 
-playBtn.addEventListener('click', handlePlayClick);
-muteBtn.addEventListener('click', handleMute);
-volumeRange.addEventListener('input', handleInputVolumeChange);
-volumeRange.addEventListener('change', handleChangeVolumeChange);
-video.addEventListener('loadedmetadata', handleLoadedMetadata);
-video.addEventListener('timeupdate', handleTimeUpdate);
-timeline.addEventListener('input', handleTimelineChange);
-timeline.addEventListener('change', handleTimelineSet);
+const handleVideoEnded = () => {
+  video.currentTime = 0;
+  playBtn.innerText = 'Play';
+};
+
 window.addEventListener('keydown', function (event) {
   if (event.key === 'Enter') {
     handlePlayClick();
@@ -107,3 +104,12 @@ window.addEventListener('keydown', function (event) {
     handlePlaySkip(-5);
   }
 });
+playBtn.addEventListener('click', handlePlayClick);
+muteBtn.addEventListener('click', handleMute);
+volumeRange.addEventListener('input', handleInputVolumeChange);
+volumeRange.addEventListener('change', handleChangeVolumeChange);
+video.addEventListener('loadedmetadata', handleLoadedMetadata);
+video.addEventListener('timeupdate', handleTimeUpdate);
+video.addEventListener('ended', handleVideoEnded);
+timeline.addEventListener('input', handleTimelineChange);
+timeline.addEventListener('change', handleTimelineSet);
