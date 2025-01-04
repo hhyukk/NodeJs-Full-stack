@@ -8,6 +8,8 @@ const timeline = document.getElementById('timeline');
 
 let volumeValue = 0.5;
 video.volume = volumeValue;
+let videoPlayStatus = false;
+let setVideoPlayStatus = false;
 
 const handlePlayClick = (e) => {
   if (video.paused) {
@@ -68,7 +70,17 @@ const handleTimelineChange = (event) => {
   const {
     target: { value },
   } = event;
+  if (!setVideoPlayStatus) {
+    videoPlayStatus = video.paused ? false : true; //true-일시정시 상태, false-실행중 상태태
+    setVideoPlayStatus = true;
+  }
+  video.pause();
   video.currentTime = value;
+};
+
+const handleTimelineSet = () => {
+  videoPlayStatus ? video.play() : video.pause();
+  setVideoPlayStatus = false;
 };
 
 playBtn.addEventListener('click', handlePlayClick);
@@ -78,3 +90,4 @@ volumeRange.addEventListener('change', handleChangeVolumeChange);
 video.addEventListener('loadedmetadata', handleLoadedMetadata);
 video.addEventListener('timeupdate', handleTimeUpdate);
 timeline.addEventListener('input', handleTimelineChange);
+timeline.addEventListener('change', handleTimelineSet);
