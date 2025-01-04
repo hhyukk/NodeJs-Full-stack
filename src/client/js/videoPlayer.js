@@ -83,6 +83,11 @@ const handleTimelineSet = () => {
   setVideoPlayStatus = false;
 };
 
+const handlePlaySkip = (time) => {
+  timeline.value += time;
+  video.currentTime += time;
+};
+
 playBtn.addEventListener('click', handlePlayClick);
 muteBtn.addEventListener('click', handleMute);
 volumeRange.addEventListener('input', handleInputVolumeChange);
@@ -92,7 +97,13 @@ video.addEventListener('timeupdate', handleTimeUpdate);
 timeline.addEventListener('input', handleTimelineChange);
 timeline.addEventListener('change', handleTimelineSet);
 window.addEventListener('keydown', function (event) {
-  if ((event.code = 'Enter')) {
+  if (event.key === 'Enter') {
     handlePlayClick();
+  }
+  if (event.key === 'ArrowRight') {
+    handlePlaySkip(5);
+  }
+  if (event.key === 'ArrowLeft') {
+    handlePlaySkip(-5);
   }
 });
