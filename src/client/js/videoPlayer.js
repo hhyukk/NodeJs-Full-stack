@@ -124,10 +124,6 @@ const handleMouseMove = () => {
   controlsMovementTimeout = setTimeout(hideControls, 3000);
 };
 
-const handleMouseLeave = () => {
-  controlsTimeout = setTimeout(hideControls, 3000);
-};
-
 window.addEventListener('keydown', function (event) {
   if (event.key === 'Enter') {
     handlePlayClick();
@@ -147,7 +143,6 @@ video.addEventListener('loadedmetadata', handleLoadedMetadata);
 video.addEventListener('timeupdate', handleTimeUpdate);
 video.addEventListener('ended', handleVideoEnded);
 video.addEventListener('mousemove', handleMouseMove);
-video.addEventListener('mouseleave', handleMouseLeave);
 timeline.addEventListener('input', handleTimelineChange);
 timeline.addEventListener('change', handleTimelineSet);
 fullScreenBtn.addEventListener('click', handleFullScreen);
