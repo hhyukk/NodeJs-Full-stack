@@ -91,3 +91,8 @@ video.addEventListener('loadedmetadata', handleLoadedMetadata);
 video.addEventListener('timeupdate', handleTimeUpdate);
 timeline.addEventListener('input', handleTimelineChange);
 timeline.addEventListener('change', handleTimelineSet);
+window.addEventListener('keydown', function (event) {
+  if ((event.code = 'Enter')) {
+    handlePlayClick();
+  }
+});
