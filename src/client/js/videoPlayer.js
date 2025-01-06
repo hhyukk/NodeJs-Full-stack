@@ -96,7 +96,11 @@ const handlePlaySkip = (time) => {
   video.currentTime += time;
 };
 
-const handleVideoEnded = () => {
+const handleEnded = () => {
+  const { id } = videoContainer.dataset;
+  fetch(`/api/videos/${id}/view`, {
+    method: 'POST',
+  });
   video.currentTime = 0;
   playBtnIcon.classList = 'fas fa-play';
 };
@@ -144,7 +148,7 @@ volumeRange.addEventListener('input', handleInputVolumeChange);
 volumeRange.addEventListener('change', handleChangeVolumeChange);
 video.addEventListener('loadeddata', handleLoadedMetadata);
 video.addEventListener('timeupdate', handleTimeUpdate);
-video.addEventListener('ended', handleVideoEnded);
+video.addEventListener('ended', handleEnded);
 video.addEventListener('click', handlePlayClick);
 videoContainer.addEventListener('mousemove', handleMouseMove);
 timeline.addEventListener('input', handleTimelineChange);
