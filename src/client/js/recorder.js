@@ -8,11 +8,11 @@ let recorder;
 let videoFile;
 
 const handleDownload = async () => {
-  const ffmpeg = createFFmpeg({ log: true });
+  const ffmpeg = createFFmpeg({ log: true }); //ffmpeg instance 만듦
   await ffmpeg.load();
-  ffmpeg.FS('writeFile', 'recording.webm', await fetchFile(videoFile));
-  await ffmpeg.run('-i', 'recording.webm', '-r', '60', 'output.mp4');
-
+  ffmpeg.FS('writeFile', 'recording.webm', await fetchFile(videoFile)); //FFmpeg 가상의 세계에 파일을 만듦
+  await ffmpeg.run('-i', 'recording.webm', '-r', '60', 'output.mp4'); //60프레임
+  // 가상의 파일(recording.webm)을 가상의 컴퓨터에서 input으로 받은 후 이를 지정한 결과물(output.mp4)로 변환
   const mp4File = ffmpeg.FS('readFile', 'output.mp4');
 
   const mp4Blop = new Blob([mp4File.buffer], { type: 'video/mp4' });
