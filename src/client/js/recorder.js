@@ -13,8 +13,14 @@ const handleDownload = async () => {
   ffmpeg.FS('writeFile', 'recording.webm', await fetchFile(videoFile));
   await ffmpeg.run('-i', 'recording.webm', '-r', '60', 'output.mp4');
 
+  const mp4File = ffmpeg.FS('readFile', 'output.mp4');
+
+  const mp4Blop = new Blob([mp4File.buffer], { type: 'video/mp4' });
+
+  const mp4Url = URL.createObjectURL(mp4Blop);
+
   const a = document.createElement('a');
-  a.href = videoFile;
+  a.href = mp4Url;
   a.download = 'MyRecording'; //비디로오 안 나오고 텍스트 등으로 나오면 .webm 등 확장자 추가
   document.body.appendChild(a);
   a.click();
