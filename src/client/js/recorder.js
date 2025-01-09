@@ -1,4 +1,5 @@
-import { createFFmpeg, fetchFile } from '@ffmpeg/ffmpeg';
+import { FFmpeg } from '@ffmpeg/ffmpeg';
+import { fetchFile, toBlobURL } from '@ffmpeg/util';
 
 const startBtn = document.getElementById('startBtn');
 const video = document.getElementById('preview');
@@ -8,39 +9,32 @@ let recorder;
 let videoFile;
 
 const handleDownload = async () => {
-  const ffmpeg = createFFmpeg({ log: true }); //ffmpeg instance 만듦
-  await ffmpeg.load();
+  // const baseURL = 'http://localhost:4000/ffmpeg/core/dist/umd';
+  const baseURL = 'https://unpkg.com/@ffmpeg/core@0.12.10/dist/umd'; // ffmpeg의 unpkg core URL
+  const ffmpeg = new FFmpeg();
+  ffmpeg.on('log', ({ message }) => {
+    console.log(message);
+  });
+  await ffmpeg.load({
+    coreURL: await toBlobURL(`${baseURL}/ffmpeg-core.js`, 'text/javascript'),
+    wasmURL: await toBlobURL(`${baseURL}/ffmpeg-core.wasm`, 'application/wasm'),
+  });
+  await ffmpeg.writeFile('recording.webm', await fetchFile(videoFile));
+  await ffmpeg.exec(['-i', 'recording.webm', '-r', '60', 'output.mp4']);
 
-  ffmpeg.FS('writeFile', 'recording.webm', await fetchFile(videoFile)); //FFmpeg 가상의 세계에 파일을 만듦
+  await ffmpeg.exec(['-i', 'recording.webm', '-ss', '00:00:01', '-frames:v', '1', 'thumbnail.jpg']);
 
-  await ffmpeg.run('-i', 'recording.webm', '-r', '60', 'output.mp4'); //60프레임
-  // 가상의 파일(recording.webm)을 가상의 컴퓨터에서 input으로 받은 후 이를 지정한 결과물(output.mp4)로 변환
+  const mp4File = await ffmpeg.readFile('output.mp4');
+  const mp4Blob = new Blob([mp4File.buffer], { type: 'video/mp4' });
+  const mp4Url = URL.createObjectURL(mp4Blob);
 
-  await ffmpeg.run(
-    '-i',
-    'recording.webm',
-    // 영상의 특정 시간대(여기서는 1초)로 이동
-    '-ss',
-    '00:00:01',
-    // 이동한 시간대의 첫 프레임을 스크린샷 1장장
-    '-frames:v',
-    '1',
-    // 그 스크린샷을 썸네일 만듦
-    'thumbnail.jpg'
-  );
-
-  const mp4File = ffmpeg.FS('readFile', 'output.mp4'); // mp4File은 Uint8Array 형식
-  const thumbFile = ffmpeg.FS('readFile', 'thumbnail.jpg');
-
-  const mp4Blop = new Blob([mp4File.buffer], { type: 'video/mp4' }); //mp4File.buffer는 ArrayBuffer 형식식
-  const thumbBlob = new Blob([thumbFile.buffer], { type: 'image/mp4' });
-
-  const mp4Url = URL.createObjectURL(mp4Blop);
+  const thumbFile = await ffmpeg.readFile('thumbnail.jpg');
+  const thumbBlob = new Blob([thumbFile.buffer], { type: 'video/mp4' });
   const thumbUrl = URL.createObjectURL(thumbBlob);
 
   const a = document.createElement('a');
   a.href = mp4Url;
-  a.download = 'MyRecording'; //비디로오 안 나오고 텍스트 등으로 나오면 .webm 등 확장자 추가
+  a.download = 'MyRecording.mp4';
   document.body.appendChild(a);
   a.click();
 
@@ -50,13 +44,9 @@ const handleDownload = async () => {
   document.body.appendChild(thumbA);
   thumbA.click();
 
-  ffmpeg.FS('unlink', 'recording.webm');
-  ffmpeg.FS('unlink', 'output.mp4');
-  ffmpeg.FS('unlink', 'thumbnail.jpg');
-
-  URL.revokeObjectURL(mp4Url);
-  URL.revokeObjectURL(thumbUrl);
-  URL.revokeObjectURL(videoFile);
+  await ffmpeg.deleteFile('recording.webm');
+  await ffmpeg.deleteFile('output.mp4');
+  await ffmpeg.deleteFile('thumbnail.jpg');
 };
 
 const handleStop = () => {
