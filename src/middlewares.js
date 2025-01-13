@@ -4,6 +4,7 @@ export const localsMiddleware = (req, res, next) => {
   res.locals.loggedIn = Boolean(req.session.loggedIn);
   res.locals.siteName = 'Wetube';
   res.locals.loggedInUser = req.session.user || {};
+  res.locals.messages = req.flash(); // 추가
   next();
 };
 
@@ -19,6 +20,7 @@ export const publicOnlyMiddleware = (req, res, next) => {
   if (!req.session.loggedIn) {
     return next();
   } else {
+    console.log('error');
     req.flash('error', 'Not authorized');
     return res.redirect('/');
   }

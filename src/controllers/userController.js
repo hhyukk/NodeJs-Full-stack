@@ -122,6 +122,7 @@ export const finishGithubLogin = async (req, res) => {
 
     // 유효한 이메일이 없는 경우
     if (!emailObj) {
+      req.flash('error', 'No valid email.');
       return res.redirect('/login ');
     }
 
@@ -146,6 +147,7 @@ export const finishGithubLogin = async (req, res) => {
     return res.redirect('/');
   } else {
     // 액세스 토큰을 받지 못한 경우
+    req.flash('error', 'No access token');
     return res.redirect('/login');
   }
 };
