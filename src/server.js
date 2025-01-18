@@ -21,6 +21,7 @@ app.use((req, res, next) => {
 });
 app.use(loger);
 app.use(express.urlencoded({ extended: true }));
+app.use(express.json({ extended: true }));
 app.use(
   session({
     secret: process.env.COOKIE_SECRET,
