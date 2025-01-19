@@ -132,14 +132,14 @@ const handleMouseMove = () => {
 };
 
 window.addEventListener('keydown', function (event) {
-  if (event.key === 'Enter') {
-    handlePlayClick();
-  }
-  if (event.key === 'ArrowRight') {
-    handlePlaySkip(5);
-  }
-  if (event.key === 'ArrowLeft') {
-    handlePlaySkip(-5);
+  const { key } = event;
+  switch (key) {
+    case event.target === document.body && 'Enter':
+      handlePlayClick();
+    case 'ArrowRight':
+      handlePlaySkip(5);
+    case 'ArrowLeft':
+      handlePlaySkip(-5);
   }
 });
 playBtn.addEventListener('click', handlePlayClick);
