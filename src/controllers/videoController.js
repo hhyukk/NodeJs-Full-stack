@@ -137,11 +137,21 @@ export const createComment = async (req, res) => {
   video.save();
   return res.status(201).json({ newCommentId: comment._id });
 };
+
 export const deleteComment = async (req, res) => {
-  const { id } = req.params;
+  const {
+    params: { id },
+    body: { videoId },
+  } = req;
   const comment = await Comment.findById(id);
+  const video = await Video.findById(videoId);
   if (comment) {
+    video.comments = video.comments.filter((commentId) => commentId.toString() !== id);
+    // .filter()는 주어진 조건에 맞는 요소만 반환하여 새 배열을 만듦
+    await video.save();
     await Comment.findByIdAndDelete(id);
+    return res.sendStatus(200);
+  } else {
+    res.sendStatus(400);
   }
-  return res.sendStatus(200);
 };

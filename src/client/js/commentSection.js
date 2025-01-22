@@ -1,9 +1,10 @@
 const videoContainer = document.getElementById('videoContainer');
 const form = document.getElementById('commentForm');
-const delBtns = document.querySelectorAll('#comment_delete');
+const videoComments = document.querySelector('.video__comments ul');
+
+let videoId = videoContainer.dataset.id;
 
 const addComment = (text, id) => {
-  const videoComments = document.querySelector('.video__comments ul');
   const newComment = document.createElement('li');
   newComment.dataset.id = id;
   newComment.className = 'video__comment';
@@ -13,15 +14,17 @@ const addComment = (text, id) => {
   span.innerText = ` ${text}`;
   const span2 = document.createElement('span');
   span2.innerText = '❌';
+  span2.className = 'comment_delete';
   newComment.appendChild(icon);
   newComment.appendChild(span);
   newComment.appendChild(span2);
   videoComments.prepend(newComment);
-  //prepend(): 콘텐츠를 선택한 요소 내부의 시작 부분에서 삽입
 };
 
 const handleDeleteComment = async (event) => {
-  console.log('DELETE');
+  if (event.target.className !== 'comment_delete') {
+    return;
+  }
   const comment = event.target.closest('li');
   const commentId = comment.dataset.id;
   const response = await fetch(`/api/videos/${commentId}/comment`, {
@@ -29,6 +32,7 @@ const handleDeleteComment = async (event) => {
     headers: {
       'Content-Type': 'application/json',
     },
+    body: JSON.stringify({ videoId }),
   });
   if (response.status === 200) {
     comment.remove();
@@ -39,7 +43,6 @@ const handleSubmit = async (event) => {
   event.preventDefault();
   const textarea = form.querySelector('textarea');
   const text = textarea.value;
-  const videoId = videoContainer.dataset.id;
   if (text === '') {
     return;
   }
@@ -55,10 +58,10 @@ const handleSubmit = async (event) => {
     const { newCommentId } = await response.json();
     addComment(text, newCommentId);
   }
-  // window.location.reload();
 };
 
 if (form) {
   form.addEventListener('submit', handleSubmit);
 }
-delBtns.forEach((btn) => btn.addEventListener('click', handleDeleteComment));
+
+videoComments.addEventListener('click', handleDeleteComment);
