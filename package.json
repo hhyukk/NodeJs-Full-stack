@@ -8,7 +8,11 @@
   },
   "scripts": {
     "dev:server": "nodemon",
-    "dev:assets": "webpack"
+    "dev:assets": "webpack --mode=development --watch",
+    "build:server": "babel src -d dist --ignore src/client",
+    "build:assets": "webpack --mode=production",
+    "build": "npm run build:server && npm run build:assets",
+    "start": "node dist/init.js"
   },
   "author": "hhyukk",
   "license": "MIT",
@@ -17,6 +21,7 @@
   },
   "homepage": "https://github.com/hhyukk/NodeJs-Full-stack#readme",
   "dependencies": {
+    "@aws-sdk/client-s3": "^3.577.0",
     "@ffmpeg/core": "^0.12.10",
     "@ffmpeg/ffmpeg": "^0.12.15",
     "@ffmpeg/util": "^0.12.2",
@@ -32,9 +37,11 @@
     "pug": "^3.0.3"
   },
   "devDependencies": {
+    "@babel/cli": "^7.24.5",
     "@babel/core": "^7.24.7",
     "@babel/node": "^7.24.7",
     "@babel/preset-env": "^7.24.7",
+    "@flydotio/dockerfile": "^0.5.7",
     "babel-loader": "^9.2.1",
     "css-loader": "^7.1.2",
     "mini-css-extract-plugin": "^2.9.2",
