@@ -10,10 +10,21 @@ const s3Client = new S3Client({
   },
 });
 
-const s3Storage = multerS3({
+const s3AvatarStorage = multerS3({
   s3: s3Client,
   bucket: 'wetube-fly-2025',
   acl: 'public-read',
+  key: function (req, file, cb) {
+    cb(null, `avatars/${req.session.user._id}/${Date.now().toString()}`);
+  },
+});
+const s3VideoStorage = multerS3({
+  s3: s3Client,
+  bucket: 'wetube-fly-2025',
+  acl: 'public-read',
+  key: function (req, file, cb) {
+    cb(null, `videos/${req.session.user._id}/${Date.now().toString()}`);
+  },
 });
 
 export const localsMiddleware = (req, res, next) => {
@@ -46,11 +57,11 @@ export const avatarUpload = multer({
   limits: {
     fileSize: 3000000,
   },
-  storage: s3Storage,
+  storage: s3AvatarStorage,
 });
 export const videoUpload = multer({
   limits: {
     fileSize: 10000000,
   },
-  storage: s3Storage,
+  storage: s3VideoStorage,
 });

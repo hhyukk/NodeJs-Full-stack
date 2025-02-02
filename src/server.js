@@ -1,4 +1,5 @@
 import express from 'express';
+// import cors from 'cors';
 import morgan from 'morgan';
 import session from 'express-session';
 import flash from 'connect-flash';
@@ -14,6 +15,7 @@ const loger = morgan('dev');
 
 app.set('view engine', 'pug');
 app.set('views', process.cwd() + '/src/views');
+// app.use(cors({ origin: 'http://localhost:3000' }));
 app.use((req, res, next) => {
   res.header('Cross-Origin-Embedder-Policy', 'require-corp');
   res.header('Cross-Origin-Opener-Policy', 'same-origin');
