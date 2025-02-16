@@ -1,14 +1,22 @@
 import multer from 'multer';
-import { S3Client } from '@aws-sdk/client-s3';
+import { S3Client, DeleteObjectCommand } from '@aws-sdk/client-s3';
 import multerS3 from 'multer-s3';
 
 const s3Client = new S3Client({
   region: 'ap-northeast-2',
   credentials: {
-    accessKeyId: process.env.AWS_KEY,
-    secretAccessKey: process.env.AWS_SECRET,
+    accessKeyId: process.env.AWS_ACCESS_KEY_ID,
+    secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
   },
 });
+
+export const removeFile = async (url) =>
+  await s3Client.send(
+    new DeleteObjectCommand({
+      Bucket: 'wetube-fly-2025',
+      Key: decodeURIComponent((url.split('.amazonaws.com/').pop() || '').toString()),
+    })
+  );
 
 const s3AvatarStorage = multerS3({
   s3: s3Client,

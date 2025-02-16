@@ -1,6 +1,7 @@
 import Video from '../models/Video';
 import Comment from '../models/Comment';
 import User from '../models/User';
+import { removeFile } from '../middlewares';
 
 export const home = async (req, res) => {
   const videos = await Video.find({}).sort({ createdAt: 'desc' }).populate('owner');
@@ -89,6 +90,12 @@ export const deleteVideo = async (req, res) => {
   if (String(video.owner) !== String(_id)) {
     req.flash('error', 'You are not the owner of the video');
     return res.status(403).redirect('/');
+  }
+  if (video.fileUrl) {
+    await removeFile(video.fileUrl);
+  }
+  if (video.thumbUrl) {
+    await removeFile(video.thumbUrl);
   }
   await Video.findByIdAndDelete(id);
   return res.redirect('/');
